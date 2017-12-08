@@ -4,16 +4,16 @@ $app->post('/login', function($request, $response) {
        $con = $this->db;
        $sql = "SELECT id FROM `users` WHERE `username`= :username AND `password` = :password;";
        $pre  = $con->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
-       exit;
        $values = array(
        ':username' => $request->getParam('username'),
 //Using hash for password encryption
-       ':password' => md5($request->getParam('password'))
+       ':password' => md5($request->getParam('password')),
        );
         $pre->execute($values);
        $userID = $pre->fetch();
-       if(isset($userID) && $userID){
-         $token = createToken($userID);
+       if(isset($userID['id']) && $userID['id']){
+         $token = createToken($userID['id']);
+
          return $response->withJson(array('status' => 'user Logged','token'=>$token),200);
        }else{
          return $response->withJson(array('error' => 'invalid username and password'),422);

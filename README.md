@@ -15,7 +15,7 @@ Replace `[my-app-name]` with the desired directory name for your new application
 * Point your virtual host document root to your new application's `public/` directory.
 * Ensure `logs/` is web writeable.
 
-To run the application in development, you can also run this command. 
+To run the application in development, you can also run this command.
 
 	php composer.phar start
 
@@ -24,3 +24,16 @@ Run this command to run the test suite
 	php composer.phar test
 
 That's it! Now go build something cool.
+
+
+
+
+
+Install JWT :
+
+1. download composer
+  php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+2. install composer
+  php composer-setup.php
+3. install jwt
+  composer require firebase/php-jwt

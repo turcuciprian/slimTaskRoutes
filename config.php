@@ -3,7 +3,7 @@ $config = [
   'db' => [
      'servername' =>'localhost',
      'username' => 'root',
-     'password' => '',
+     'password' => 'root',
      'dbname' => 'ratemydoctor',
   ]
 ];
