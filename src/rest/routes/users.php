@@ -4,6 +4,7 @@ $app->post('/login', function($request, $response) {
        $con = $this->db;
        $sql = "SELECT id FROM `users` WHERE `username`= :username AND `password` = :password;";
        $pre  = $con->prepare($sql, array(PDO::ATTR_CURSOR => PDO::CURSOR_FWDONLY));
+       exit;
        $values = array(
        ':username' => $request->getParam('username'),
 //Using hash for password encryption
@@ -17,7 +18,6 @@ $app->post('/login', function($request, $response) {
        }else{
          return $response->withJson(array('error' => 'invalid username and password'),422);
        }
-
    }
    catch(\Exception $ex){
        return $response->withJson(array('error' => $ex->getMessage()),422);
@@ -25,7 +25,7 @@ $app->post('/login', function($request, $response) {
 });
 
 
-$app->post('/user', function($request, $response) {
+$app->put('/user', function($request, $response) {
    try{
        $con = $this->db;
        $sql = "INSERT INTO `users`(`username`, `email`,`password`) VALUES (:username,:email,:password)";
